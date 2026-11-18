@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width,initial-scale=1" name="viewport" />
+  <meta content="#10283e" name="theme-color" />
+  <meta
+    content="SICT235 Codelab 06 · Digital ID first Flutter app, image assets, pubspec.yaml, widget documentation, Widget Gallery, pub.dev and a simple star-button sound challenge."
+    name="description" />
+  <link href="images/favicon.svg" rel="icon" type="image/svg+xml" />
+  <title>Codelab 06 · Your First Flutter App | SICT235</title>
+  <link href="css/style.css?v=session06-v1" rel="stylesheet" />
+  <link href="css/session06-additions.css?v=session06-v1" rel="stylesheet" />
+  <script defer="" src="js/gists.js"></script>
+  <script defer="" src="js/app.js?v=session06-v1"></script>
+  <script defer="" src="js/session06-interactive.js?v=session06-v1"></script>
+</head>
+
+<body><a class="skip-link" href="#content">Skip to lesson</a>
+  <div class="app-shell">
+    <div class="mobile-scrim" hidden="" id="scrim"></div>
+    <aside aria-label="Codelab navigation" class="sidebar" id="sidebar">
+      <div class="brand">
+        <div aria-hidden="true" class="brand-icon"><svg height="27" viewbox="0 0 32 32" width="27">
+            <path d="M17 3H28L9 22H1L17 3ZM13 24l8-8h-8l-4 4 4 4Zm3 3h11l-6-6-5 6Z" fill="currentColor"></path>
+          </svg></div>
+        <div><span class="brand-label">TVET CODELAB STUDIO</span><strong>Mobile Apps · PDB2</strong></div><button
+          aria-label="Close navigation" class="icon-button sidebar-close" id="sidebarClose" type="button">✕</button>
+      </div>
+      <div class="sidebar-course"><span class="course-code">SICT235 · 2026–2027</span>
+        <h2>First App &amp;<br />Widget Discovery</h2>
+        <p>06 / Run · Explore · Discover · Build</p>
+        <div class="progress-summary"><span>Your progress</span><strong id="progressLabel">0 of 8</strong></div>
+        <div aria-label="Session completion" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0"
+          class="progress-track" id="progressbar" role="progressbar">
+          <div id="progressFill"></div>
+        </div>
+      </div>
+      <nav aria-label="Learning sections">
+        <ol class="step-nav" id="stepList">
+          <li><button class="step-link" data-step="0" type="button"><span class="step-number">01</span><span
+                class="step-nav-text">The Flutter mission<small>5 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="1" type="button"><span class="step-number">02</span><span
+                class="step-nav-text">Create the Digital ID<small>14 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="2" type="button"><span class="step-number">03</span><span
+                class="step-nav-text">Project anatomy &amp; pubspec<small>13 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="3" type="button"><span class="step-number">04</span><span
+                class="step-nav-text">OOP meets widget trees<small>10 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="4" type="button"><span class="step-number">05</span><span
+                class="step-nav-text">Read Flutter documentation<small>12 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="5" type="button"><span class="step-number">06</span><span
+                class="step-nav-text">Widget categories &amp; gallery<small>12 min</small></span><span
+                aria-hidden="true" class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="6" type="button"><span class="step-number">07</span><span
+                class="step-nav-text">pub.dev · star sound<small>20 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+          <li><button class="step-link" data-step="7" type="button"><span class="step-number">08</span><span
+                class="step-nav-text">Independent widget mission<small>4 min</small></span><span aria-hidden="true"
+                class="step-check">✓</span></button></li>
+        </ol>
+      </nav>
+      <div class="sidebar-bottom"><span class="status-dot"></span>Progress saved on this device<button
+          class="reset-link" id="resetProgress" type="button">Reset progress</button></div>
+    </aside>
+    <div class="main-column">
+      <header class="topbar"><button aria-controls="sidebar" aria-expanded="false" aria-label="Open navigation"
+          class="icon-button menu-toggle" id="menuToggle" type="button">☰</button>
+        <div class="breadcrumbs">SICT235 <span>/</span> Flutter Codelabs <span>/</span> <b>Session 06</b></div>
+        <div class="top-actions"><span class="time-chip">◷ 90 min · guided</span><button
+            aria-label="Toggle light or dark mode" class="icon-button" id="themeToggle" type="button"><span
+              id="themeIcon">◐</span></button></div>
+      </header>
+      <main class="main-content" id="content" tabindex="-1">
+        <section class="lesson-step" data-step="0" id="section-1">
+          <div class="hero s06-hero">
+            <div class="hero-copy"><span class="eyebrow">SESSION 06 · FIRST FLUTTER APP</span>
+              <h1>Run it. Read it.<br /><em>Discover widgets.</em></h1>
+              <p>Build a simple Digital ID, discover how widgets work, and make the star button play a tiny chime using
+                a package from pub.dev.</p>
+              <div class="hero-tags"><span>First app</span><span>pubspec.yaml</span><span>API
+                  reference</span><span>Widget gallery</span><span>Assets</span><span>pub.dev</span></div>
+            </div>
+          </div>
+          <div class="learning-grid">
+            <div class="learning-card"><span class="kicker">TODAY'S SUCCESS CRITERION</span>
+              <h3>Explain your first Flutter project</h3>
+              <p>Run one clear, beginner-friendly screen. Locate main.dart and pubspec.yaml, register your image, and
+                trace the widget tree.</p>
+            </div>
+            <div class="learning-card"><span class="kicker">INDEPENDENCE TARGET</span>
+              <h3>Find answers without receiving all the code</h3>
+              <p>Use the Widget Catalog, class APIs, and pub.dev to find the right widget and a small audio package
+                yourself.</p>
+            </div>
+          </div>
+          <div class="s04-strip"><span>01 · Run</span><span>02 · Investigate</span><span>03 · Trace</span><span>04 ·
+              Discover</span><span>05 · Build</span></div>
+          <div class="concept-card s06-talk">
+            <div class="concept-mascot"><img alt="" decoding="async" loading="lazy"
+                src="images/dash-study-mascot.webp" /></div>
+            <div class="concept-speech">
+              <h3>Your destination is not a memorized widget list.</h3>
+              <p>You already know classes, constructors and methods. Today you will use those concepts to read a real
+                Flutter project, find unfamiliar widget classes in the official docs, and change a UI without copying
+                every line from the instructor.</p>
+            </div>
+          </div>
+          <div class="s06-mission"><span class="kicker">THE APP YOU WILL BUILD</span>
+            <h3>Your Digital ID: one image, two texts and one star button</h3>
+            <div class="s06-id-preview">
+              <div class="s06-id-bar">My Digital ID</div>
+              <div class="s06-id-body">
+                <img alt="Simple illustrated profile avatar, bundled as a Flutter asset"
+                  src="starter/assets/images/student_avatar.png" />
+                <strong>Your Name</strong><small>PDB2 · Junior Flutter Developer</small>
+              </div>
+              <div aria-label="Star floating action button" class="s06-star-fab">★</div>
+            </div>
+            <p><strong>Phase 1:</strong> Build the screen and add its local image. <strong>Phase 2:</strong> Press the
+              star FloatingActionButton to play a short sound using a package found on pub.dev. </p>
+          </div>
+          <div class="s06-checklist"><label><input class="s06-milestone" type="checkbox" /> I know what the final
+              challenge is.</label><label><input class="s06-milestone" type="checkbox" /> I can open the official
+              Flutter documentation.</label></div>
+        </section>
+        <section class="lesson-step" data-step="1" hidden="" id="section-2">
+          <div class="section-top"><span class="overline">STEP 02 · FIRST RUN</span><span class="duration">GUIDED
+              DISCOVERY</span></div>
+          <h1 class="section-heading">Create and run your Digital ID</h1>
+          <p class="lede">Create one Flutter project and use it throughout the lesson. You will start with a local
+            profile image, a name, a subtitle and a star FloatingActionButton. The star has an empty callback for now;
+            you will connect it to a sound in Step 07.</p>
+          <div class="concept-card s06-talk">
+            <div class="concept-mascot"><img alt="" decoding="async" loading="lazy"
+                src="images/dash-study-mascot.webp" /></div>
+            <div class="concept-speech">
+              <h3>A rewarding first screen, with very few widgets.</h3>
+              <p>The Digital ID uses MaterialApp, Scaffold, Center, Column, CircleAvatar, Text and one
+                FloatingActionButton. First see it on screen; next we will investigate the structure and the source of
+                its image.</p>
+            </div>
+          </div>
+          <div class="s06-mode">
+            <div class="s06-mode-header"><span class="kicker">CHOOSE HOW TO CREATE YOUR PROJECT</span>
+              <div class="s06-tabs"><button class="active" data-creation="vscode" type="button">VS Code</button><button
+                  data-creation="terminal" type="button">Terminal</button></div>
+            </div>
+            <div aria-live="polite" class="s06-mode-panel" id="createInstruction">
+              <ol class="steps-list">
+                <li>Open VS Code and the Command Palette (<code>Ctrl+Shift+P</code>).</li>
+                <li>Select <strong>Flutter: New Project</strong>, then choose <strong>Application</strong>.</li>
+                <li>Name the project <code>first_flutter_explorer</code> and choose its parent folder.</li>
+                <li>Choose <strong>Chrome</strong> and press <strong>Run/Debug</strong> (<code>F5</code>).</li>
+                <li>Confirm that the app loads and keep this project open.</li>
+                <li>In the terminal run <code>flutter pub add material_ui</code> before using our updated Digital ID
+                  source.</li>
+              </ol>
+            </div>
+          </div>
+          <div class="s06-note"><strong>Why not DartPad for this example?</strong> We want to practice a real project,
+            asset registration and VS Code. A local <code>Image.asset</code> or <code>AssetImage</code> file is not
+            available inside a remote DartPad Gist.</div>
+          <section class="practice-card" data-exercise="hello_app"><span class="kicker">LOCAL FLUTTER PROJECT · Digital
+              ID · Phase 1</span>
+            <h3>First Run · Digital ID with one local image</h3>
+            <p>Create your project, copy the starter main.dart and student_avatar.png, then register the image path in
+              the generated pubspec.yaml. Follow the starter guide; do not replace the whole pubspec.</p>
+            <div class="s06-note"><strong>Flutter 3.50+ import.</strong><br> Run
+              <code>flutter pub add material_ui</code>
+              once in your project before using the code below. Older books and tutorials may show
+              <code>import 'package:flutter/material.dart';</code>. That SDK import is now deprecated but still works
+              during the transition; DartPad may still need it. <br><a
+                href="https://docs.flutter.dev/release/breaking-changes/material-ui-and-cupertino-ui" target="_blank"
+                rel="noopener noreferrer">Official migration note ↗</a>
+            </div>
+            <div class="inline-code-box">
+              <div class="code-header"><span>lib/main.dart · Digital ID · Image + star FAB</span><button
+                  data-copy="hello_app" type="button">Copy code</button></div>
+              <pre class="code-sample"><code>import 'package:material_ui/material_ui.dart';
+
+void main() =&gt; runApp(const DigitalIdApp());
+
+class DigitalIdApp extends StatelessWidget {
+  const DigitalIdApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: const Color(0xFFF0F6FC),
+        appBar: AppBar(title: const Text('My Digital ID')),
+        body: const Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircleAvatar(
+                radius: 64,
+                backgroundImage: AssetImage('assets/images/student_avatar.png'),
+              ),
+              SizedBox(height: 16),
+              Text('Your Name',
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+              SizedBox(height: 6),
+              Text('PDB2 · Junior Flutter Developer'),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {}, // We will learn button behavior later.
+          child: const Icon(Icons.star),
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try this:</strong> Change <code>Your Name</code>, check the star button
+              position, then change <code>Icons.star</code> to <code>Icons.favorite</code> and compare. No action is
+              programmed yet.</div>
+            <details class="hint s06-solution">
+              <summary>Reveal guidance / expected observation</summary>
+              <p>If the avatar does not appear, verify its exact path, case, and indentation inside the generated
+                pubspec. After adding an asset, stop and restart the app if hot reload does not pick it up. Run flutter
+                devices if Chrome or Android is missing.</p>
+            </details>
+            <div class="s06-local-only"><strong>Use your Flutter project in VS Code.</strong> DartPad cannot access the
+              images or audio files stored on your computer. The Gist publisher deliberately excludes this asset-based
+              example.</div>
+          </section>
+          <div class="s06-study-task"><span class="kicker">BEFORE RUNNING THE CODE</span>
+            <h3>Put your first asset into the project</h3>
+            <ol class="steps-list">
+              <li>Run <code>flutter pub add material_ui</code> in the project terminal. Inspect the new dependency in
+                <code>pubspec.yaml</code>.
+              </li>
+              <li>Copy <code>student_avatar.png</code> from <code>starter/assets/images/</code> to
+                <code>assets/images/</code> in your generated Flutter project.
+              </li>
+              <li>Open the generated <code>pubspec.yaml</code>. Under its <em>existing</em> <code>flutter:</code> key,
+                declare <code>assets/images/student_avatar.png</code>.</li>
+              <li>Run <code>flutter pub get</code>, then <code>flutter run -d chrome</code>. Confirm that the image
+                appears.</li>
+            </ol><a href="starter/README.md" rel="noopener" target="_blank">Detailed student setup guide ↗</a>
+          </div>
+          <div class="s06-resource-row"><a class="ghost-button" href="https://docs.flutter.dev/reference/create-new-app"
+              rel="noopener noreferrer" target="_blank">Official: Create a Flutter app ↗</a><a class="ghost-button"
+              href="https://docs.flutter.dev/learn/pathway/tutorial/create-an-app" rel="noopener noreferrer"
+              target="_blank">Official first-app learning path
+              ↗</a><a class="primary-button" download="" href="starter/README.md">↓ Starter setup guide</a></div>
+          <details class="hint">
+            <summary>Device not available? Open the troubleshooting path</summary>
+            <p>Run <code>flutter devices</code> and check that Chrome appears. If your Android emulator is slow, use
+              Chrome first. If Flutter is not recognized, return to Session 02’s SDK/PATH checklist. If packages cannot
+              download because of connectivity, use the previously installed SDK and cached packages; do not install
+              unrelated dependencies for this lesson.</p>
+          </details>
+        </section>
+        <section class="lesson-step" data-step="2" hidden="" id="section-3">
+          <div class="section-top"><span class="overline">STEP 03 · PROJECT ANATOMY</span><span class="duration">GUIDED
+              DISCOVERY</span></div>
+          <h1 class="section-heading">What belongs where inside a Flutter project?</h1>
+          <p class="lede">Your first project contains application code, configuration, generated platform files and
+            tooling metadata. Click each file in our explorer, then find the real file in VS Code.</p>
+          <div class="concept-card s06-talk">
+            <div class="concept-mascot"><img alt="" decoding="async" loading="lazy"
+                src="images/dash-study-mascot.webp" /></div>
+            <div class="concept-speech">
+              <h3>A Flutter project is more than main.dart.</h3>
+              <p>The source code lives in <code>lib/</code>, but the <code>pubspec.yaml</code> at the project root
+                describes the package, dependencies and assets. Platform folders and test files have other
+                responsibilities. Learn the map so you know <em>where</em> to look first.</p>
+            </div>
+          </div>
+          <div class="s06-explorer">
+            <div aria-label="Interactive Flutter project explorer" class="s06-filetree"><strong>📁
+                first_flutter_explorer/</strong><button data-file="lib" type="button">📁 lib/</button><button
+                data-file="main" type="button">　📄 main.dart</button><button data-file="pubspec" type="button">📄
+                pubspec.yaml <span class="s06-strong-dot">KEY</span></button><button data-file="assets" type="button">📁
+                assets/images/ · assets/audio/</button><button data-file="lock" type="button">📄
+                pubspec.lock</button><button data-file="tests" type="button">📁 test/</button><button
+                data-file="platforms" type="button">📁 android/ · ios/ · web/ · windows/</button><button
+                data-file="analysis" type="button">📄 analysis_options.yaml</button><button data-file="tool"
+                type="button">📁
+                .dart_tool/ (generated)</button></div>
+            <div class="s06-file-detail" id="fileExplain" role="status"><span class="kicker">CLICK A FILE</span>
+              <h3>Start with <code>main.dart</code> and <code>pubspec.yaml</code>.</h3>
+              <p>Choose a file on the left to learn its job. Then open that exact file in your actual VS Code project.
+              </p>
+            </div>
+          </div>
+          <div class="s06-section-title"><span class="kicker">DEEP DIVE · PUBSPEC.YAML</span>
+            <h2>Explore the project manifest</h2>
+            <p>You just registered a real image. Here we inspect WHY that works: pubspec identifies your application,
+              manages its packages, and lists the local files Flutter must bundle.</p>
+          </div>
+          <div class="inline-code-box">
+            <div class="code-header"><span>pubspec.yaml · conceptual excerpt, not a replacement file</span></div>
+            <pre class="code-sample"><code>name: first_flutter_explorer
+# ... keep your generated environment/dependency settings ...
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # material_ui is added with: flutter pub add material_ui
+  # audioplayers is added later using flutter pub add audioplayers
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/student_avatar.png
+    # - assets/audio/star_chime.wav  # Uncomment in Step 07, after copying file
+</code></pre>
+          </div>
+          <div class="s06-hotspots"><button data-pub="metadata" type="button">01 · Metadata</button><button
+              data-pub="dependencies" type="button">02 · Dependencies</button><button data-pub="assets" type="button">03
+              · Assets</button><button data-pub="lock" type="button">04 · pub get and lockfile</button></div>
+          <div aria-live="polite" class="s06-inline-result" id="pubExplain">Select a part of the pubspec to see why it
+            exists and when you edit it.</div>
+          <div class="check-card">
+            <h3>Where should you register a bundled local image in a Flutter application?</h3>
+            <div class="answer-buttons"><button data-correct="false" type="button">Inside the test/
+                folder</button><button data-correct="true" type="button">Under flutter: assets: in
+                pubspec.yaml</button><button data-correct="false" type="button">Inside main() as a command</button>
+            </div>
+            <p aria-live="polite" class="quiz-feedback">Choose an answer.</p><span class="answer-detail" hidden="">Copy
+              the image file into your Flutter project, list its path under the existing flutter/assets section in
+              pubspec.yaml, and run flutter pub get. The audio file will be registered later.</span>
+          </div>
+          <div class="s06-note"><strong>Important syntax habit.</strong> YAML uses indentation to show structure. A
+            misplaced <code>assets:</code> key or inconsistent indentation changes the meaning of the file. Keep the
+            original generated <code>environment:</code> constraint; never copy a placeholder as executable YAML.</div>
+          <p class="s06-small-link">Official reference: <a href="https://docs.flutter.dev/tools/pubspec"
+              rel="noopener noreferrer" target="_blank">Flutter pubspec options ↗</a> · <a
+              href="https://docs.flutter.dev/packages-and-plugins/dependency-management" rel="noopener noreferrer"
+              target="_blank">Package dependency management ↗</a></p>
+        </section>
+        <section class="lesson-step" data-step="3" hidden="" id="section-4">
+          <div class="section-top"><span class="overline">STEP 04 · OOP TO WIDGET TREES</span><span
+              class="duration">GUIDED DISCOVERY</span></div>
+          <h1 class="section-heading">Trace how Dart code becomes an interface</h1>
+          <p class="lede">Trace your Digital ID: main() creates DigitalIdApp; build() describes MaterialApp → Scaffold →
+            Center → Column → image and text. The floating star button belongs directly to Scaffold, not inside the
+            Column.</p>
+          <div class="concept-card s06-talk">
+            <div class="concept-mascot"><img alt="" decoding="async" loading="lazy"
+                src="images/dash-study-mascot.webp" /></div>
+            <div class="concept-speech">
+              <h3>You already know the syntax. Now discover the architecture.</h3>
+              <p>DigitalIdApp is a Dart class extending StatelessWidget. Its build() method returns a Widget.
+                CircleAvatar uses an image asset, while FloatingActionButton occupies a separate named Scaffold
+                property.</p>
+            </div>
+          </div>
+          <section class="practice-card" data-exercise="widget_tree"><span class="kicker">RUNNABLE FLUTTER · OOP Bridge
+              · Trace the Widget Tree</span>
+            <h3>OOP Bridge · Trace the Widget Tree</h3>
+            <p>Run this example and compare its nesting with the interactive tree below. The code still uses ordinary
+              Dart OOP constructs.</p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · OOP Bridge · Trace the Widget Tree</span><button
+                  data-copy="widget_tree" type="button">Copy code</button></div>
+              <pre class="code-sample"><code>import 'package:flutter/material.dart';
+
+void main() =&gt; runApp(const ExplorerApp());
+
+class ExplorerApp extends StatelessWidget {
+  const ExplorerApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Follow the widget tree')),
+        body: const Center(
+          child: Text('A Text widget inside Center inside Scaffold'),
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try this:</strong> Identify the superclass, constructor, override,
+              method return type, and two uses of named constructor arguments.</div>
+            <details class="hint s06-solution">
+              <summary>Reveal guidance / expected observation</summary>
+              <p>ExplorerApp extends StatelessWidget; it defines a const constructor and overrides Widget
+                build(BuildContext context). Named arguments include home:, appBar:, body:, and child:.</p>
+            </details>
+            <div class="exercise-actions"><button class="primary-button load-dartpad" data-activity="widget_tree"
+                type="button">▶ Load DartPad editor (optional)</button><a class="ghost-button external-dartpad"
+                data-activity="widget_tree" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open
+                DartPad ↗</a></div>
+            <div class="embed-slot" data-activity="widget_tree">
+              <p class="embed-status">Your optional DartPad editor appears here after the instructor publishes the
+                teaching Gists. <strong>The main activity is in your real Flutter project in VS Code.</strong> Until
+                Gists are published, copy the source above into <code>lib/main.dart</code>.</p>
+            </div>
+          </section>
+          <div class="s06-tree">
+            <div><span class="kicker">CLICKABLE WIDGET TREE</span>
+              <div class="s06-tree-nodes"><button data-widget="main" type="button">main()</button><span>↓</span><button
+                  data-widget="runapp" type="button">runApp(DigitalIdApp)</button><span>↓</span><button
+                  data-widget="myapp" type="button">DigitalIdApp</button><span>↓</span><button data-widget="material"
+                  type="button">MaterialApp</button><span>↓ home</span><button data-widget="scaffold"
+                  type="button">Scaffold</button>
+                <div class="s06-tree-fork">
+                  <div><span>appBar</span><button data-widget="appbar" type="button">AppBar</button></div>
+                  <div><span>body</span><button data-widget="center" type="button">Center</button><span>↓
+                      child</span><button data-widget="column" type="button">Column</button><span>↓
+                      children</span><button data-widget="avatar" type="button">CircleAvatar</button><button
+                      data-widget="text" type="button">Text</button></div>
+                  <div><span>floatingActionButton</span><button data-widget="fab"
+                      type="button">FloatingActionButton</button></div>
+                </div>
+              </div>
+            </div>
+            <div class="s06-tree-explain" id="widgetExplain"><span class="kicker">SELECT A NODE</span>
+              <h3>The tree describes nested widget objects.</h3>
+              <p>Choose a node to learn its responsibility and open the official class reference.</p>
+            </div>
+          </div>
+          <div class="check-card">
+            <h3>Which method returns the widget subtree for a StatelessWidget?</h3>
+            <div class="answer-buttons"><button data-correct="false" type="button">The constructor of
+                MaterialApp</button><button data-correct="true" type="button">The overridden build(BuildContext)
+                method</button><button data-correct="false" type="button">The flutter pub get command</button></div>
+            <p aria-live="polite" class="quiz-feedback">Choose an answer.</p><span class="answer-detail" hidden="">The
+              build method describes a widget subtree. Flutter calls it as needed; you do not call it manually to paint
+              the screen.</span>
+          </div>
+          <div class="s06-note"><strong>Only the necessary theory.</strong> Today, <code>StatelessWidget</code> is
+            enough. We will examine <code>StatefulWidget</code>, <code>setState</code>, and state management in later
+            sessions.</div>
+        </section>
+        <section class="lesson-step" data-step="4" hidden="" id="section-5">
+          <div class="section-top"><span class="overline">STEP 05 · DOCUMENTATION SKILL</span><span
+              class="duration">GUIDED DISCOVERY</span></div>
+          <h1 class="section-heading">Learn how to read real Flutter documentation</h1>
+          <p class="lede">This is a professional developer skill. Learn when to read a guide, when to browse widgets,
+            when to inspect an API class, and how to follow related types. Do not rely on copying the first search
+            result.</p>
+          <div class="concept-card s06-talk">
+            <div class="concept-mascot"><img alt="" decoding="async" loading="lazy"
+                src="images/dash-study-mascot.webp" /></div>
+            <div class="concept-speech">
+              <h3>Widget API and package documentation are two different searches.</h3>
+              <p>Documentation is a set of different tools: guides for concepts, the Widget Catalog for visual
+                discovery, API references for exact signatures, the Cookbook for task recipes, and pub.dev for external
+                packages. Each answers a different question.</p>
+            </div>
+          </div>
+          <div class="s06-doc-map"><button data-resource="guides" type="button"><span>01 · LEARN</span><strong>Flutter
+                Docs</strong><small>How does this concept work?</small></button><button data-resource="catalog"
+              type="button"><span>02 · FIND</span><strong>Widget Catalog</strong><small>Which widget fits my
+                need?</small></button><button data-resource="api" type="button"><span>03 · CONFIGURE</span><strong>API
+                Reference</strong><small>Which constructor/parameter?</small></button><button data-resource="cookbook"
+              type="button"><span>04 · APPLY</span><strong>Flutter Cookbook</strong><small>How can I perform this
+                task?</small></button><button data-resource="packages" type="button"><span>05 ·
+                EXTEND</span><strong>pub.dev</strong><small>Which package adds a new capability?</small></button></div>
+          <div aria-live="polite" class="s06-inline-result" id="docMapResult">Select a resource to see a typical
+            developer question and the official link.</div>
+          <div class="s06-section-title"><span class="kicker">API READER · TEXT CLASS</span>
+            <h2>Find a parameter by reading the class</h2>
+            <p>Open the official <a href="https://api.flutter.dev/flutter/widgets/Text-class.html"
+                rel="noopener noreferrer" target="_blank">Text class API ↗</a> in another tab. The panel below is an
+              <strong>instructional anatomy</strong>, not a live copy of the documentation page.
+            </p>
+          </div>
+          <div class="s06-api-shell">
+            <div class="s06-api-top">
+              <div><span class="kicker">API DOCUMENTATION ANATOMY</span>
+                <h3>Text class</h3><small>widgets library · API reference</small>
+              </div><a href="https://api.flutter.dev/flutter/widgets/Text-class.html" rel="noopener noreferrer"
+                target="_blank">Open real API ↗</a>
+            </div>
+            <div class="s06-api-tabs"><button class="active" data-api-tab="purpose"
+                type="button">Purpose</button><button data-api-tab="constructors"
+                type="button">Constructor</button><button data-api-tab="properties"
+                type="button">Properties</button><button data-api-tab="inheritance"
+                type="button">Inheritance</button><button data-api-tab="related" type="button">Follow a
+                type</button></div>
+            <div class="s06-api-panel" id="apiPanel">
+              <h4>What does this class do?</h4>
+              <p>Find its description and examples. Ask which problem it solves before reading every available property.
+              </p>
+            </div>
+          </div>
+          <div class="s06-study-task"><span class="kicker">LIVE DOCUMENTATION INVESTIGATION</span>
+            <h3>Find, inspect, explain</h3>
+            <ol class="steps-list">
+              <li>Open the <strong>Text</strong> API page and locate the constructor.</li>
+              <li>Identify the text content argument and which arguments are named.</li>
+              <li>Find the type of the <code>style</code> property. Follow its link to the <strong>TextStyle</strong>
+                class.</li>
+              <li>Locate <code>fontSize</code> and <code>fontWeight</code> in the related type.</li>
+              <li>Return to your app and make a visible change.</li>
+            </ol>
+            <details class="hint">
+              <summary>Reveal instructor explanation (after inspecting the API)</summary>
+              <p><code>Text('hello', style: TextStyle(fontSize: 24))</code> passes a positional string and a named
+                <code>style</code> argument. <code>style</code> expects a <code>TextStyle?</code>, so following the
+                <code>TextStyle</code> class is the next research step. The type links in API signatures are valuable
+                navigation tools.
+              </p>
+            </details>
+          </div>
+          <div class="s06-note"><strong>A second API path for your own app:</strong> Starting at <a
+              href="https://api.flutter.dev/flutter/material/CircleAvatar-class.html" rel="noopener noreferrer"
+              target="_blank">CircleAvatar</a>, find <code>backgroundImage</code>, then follow its type to
+            <code>ImageProvider</code> and <code>AssetImage</code>. This is exactly how to research unfamiliar
+            constructors instead of memorizing them.
+          </div>
+          <section class="practice-card" data-exercise="text_api"><span class="kicker">RUNNABLE FLUTTER · API-to-Code ·
+              Text and TextStyle</span>
+            <h3>API-to-Code · Text and TextStyle</h3>
+            <p>Use the documentation to explain each argument before running this example. In your IDE, replace the
+              current <code>lib/main.dart</code> after keeping a copy if you want to compare.</p>
+            <div class="inline-code-box">
+              <div class="code-header"><span>main.dart · API-to-Code · Text and TextStyle</span><button
+                  data-copy="text_api" type="button">Copy code</button></div>
+              <pre class="code-sample"><code>import 'package:flutter/material.dart';
+
+void main() =&gt; runApp(const ExplorerApp());
+
+class ExplorerApp extends StatelessWidget {
+  const ExplorerApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Read the API, then edit')),
+        body: const Center(
+          child: Text(
+            'I found this in the API reference!',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+            </div>
+            <div class="mini-challenge"><strong>Try this:</strong> Use the API docs to change <code>fontSize</code> and
+              <code>textAlign</code>. Predict how the text will move or look.
+            </div>
+            <details class="hint s06-solution">
+              <summary>Reveal guidance / expected observation</summary>
+              <p>The text becomes larger/smaller when fontSize changes. TextAlign controls alignment within the Text
+                widget’s available width; the surrounding Center still controls positioning of the widget as a whole.
+              </p>
+            </details>
+            <div class="exercise-actions"><button class="primary-button load-dartpad" data-activity="text_api"
+                type="button">▶ Load DartPad editor (optional)</button><a class="ghost-button external-dartpad"
+                data-activity="text_api" href="https://dartpad.dev/" rel="noopener noreferrer" target="_blank">Open
+                DartPad ↗</a></div>
+            <div class="embed-slot" data-activity="text_api">
+              <p class="embed-status">Your optional DartPad editor appears here after the instructor publishes the
+                teaching Gists. <strong>The main activity is in your real Flutter project in VS Code.</strong> Until
+                Gists are published, copy the source above into <code>lib/main.dart</code>.</p>
+            </div>
+          </section>
+          <div class="s06-note"><strong>Why is this DartPad example different?</strong> DartPad may still use the older
+            <code>package:flutter/material.dart</code> import. In your Flutter 3.50+ local project, use
+            <code>package:material_ui/material_ui.dart</code> after running <code>flutter pub add material_ui</code>. Do
+            not mix both design libraries in the same app. <a href="docs/FLUTTER_VERSION_NOTE.md" target="_blank"
+              rel="noopener">Read the short version note ↗</a>
+          </div>
+        </section>
+        <section class="lesson-step" data-step="5" hidden="" id="section-6">
+          <div class="section-top"><span class="overline">STEP 06 · WIDGET CATALOG &amp; GALLERY</span><span
+              class="duration">GUIDED DISCOVERY</span></div>
+          <h1 class="section-heading">Discover a widget from a UI need</h1>
+          <p class="lede">A professional Flutter developer rarely memorizes the whole Widget Catalog. Instead, they
+            identify the problem, browse a relevant category, view examples, and open the class API.</p>
+          <div class="concept-card s06-talk">
+            <div class="concept-mascot"><img alt="" decoding="async" loading="lazy"
+                src="images/dash-study-mascot.webp" /></div>
+            <div class="concept-speech">
+              <h3>Browse by purpose before looking for a class name.</h3>
+              <p>The official Widget Catalog groups foundational widgets under categories such as Basics, Layout, Text,
+                Input, Scrolling and Assets. Material and Cupertino are design systems. The gallery helps you recognize
+                a component visually; the API explains its exact usage.</p>
+            </div>
+          </div>
+          <div class="s06-gallery-header"><span class="kicker">INTERACTIVE DISCOVERY BOARD</span>
+            <h2>Choose a category to explore</h2>
+            <p>Click a category. You will see an example widget, what task it helps with, and a link to the official
+              documentation.</p>
+            <div aria-label="Widget category filters" class="s06-category-tabs" role="group"><button class="active"
+                data-cat="all" type="button">All</button><button data-cat="basics" type="button">Basics</button><button
+                data-cat="layout" type="button">Layout</button><button data-cat="text"
+                type="button">Text</button><button data-cat="input" type="button">Input</button><button
+                data-cat="assets" type="button">Assets</button><button data-cat="material" type="button">Material
+                3</button></div>
+          </div>
+          <div class="s06-gallery-grid">
+            <article data-cat-card="basics"><span class="s06-gallery-icon">◈</span>
+              <div class="s06-gallery-demo demo-center"><span>Hello</span></div><span class="kicker">BASICS</span>
+              <h3>Center</h3>
+              <p>Position a child in the available space.</p><a
+                href="https://api.flutter.dev/flutter/widgets/Center-class.html" rel="noopener noreferrer"
+                target="_blank">Explore Center API ↗</a>
+            </article>
+            <article data-cat-card="layout"><span class="s06-gallery-icon">☷</span>
+              <div class="s06-gallery-demo demo-column"><i>One</i><i>Two</i><i>Three</i></div><span
+                class="kicker">LAYOUT</span>
+              <h3>Column</h3>
+              <p>Arrange children vertically.</p><a href="https://api.flutter.dev/flutter/widgets/Column-class.html"
+                rel="noopener noreferrer" target="_blank">Explore Column API ↗</a>
+            </article>
+            <article data-cat-card="text"><span class="s06-gallery-icon">T</span>
+              <div class="s06-gallery-demo demo-text">Hello, Flutter!</div><span class="kicker">TEXT</span>
+              <h3>Text</h3>
+              <p>Display a string with optional styling and alignment.</p><a
+                href="https://api.flutter.dev/flutter/widgets/Text-class.html" rel="noopener noreferrer"
+                target="_blank">Explore Text API ↗</a>
+            </article>
+            <article data-cat-card="input"><span class="s06-gallery-icon">✎</span>
+              <div class="s06-gallery-demo demo-input"><span>Name</span><strong>Enter your name...</strong></div><span
+                class="kicker">INPUT</span>
+              <h3>TextField</h3>
+              <p>Accept editable text from a user.</p><a
+                href="https://api.flutter.dev/flutter/material/TextField-class.html" rel="noopener noreferrer"
+                target="_blank">Explore TextField API ↗</a>
+            </article>
+            <article data-cat-card="assets"><span class="s06-gallery-icon">▧</span>
+              <div class="s06-gallery-demo demo-image"><span>▧</span><small>asset image</small></div><span
+                class="kicker">ASSETS</span>
+              <h3>Image</h3>
+              <p>Display image resources, including local assets.</p><a
+                href="https://api.flutter.dev/flutter/widgets/Image-class.html" rel="noopener noreferrer"
+                target="_blank">Explore Image API ↗</a>
+            </article>
+            <article data-cat-card="material"><span class="s06-gallery-icon">★</span>
+              <div class="s06-gallery-demo demo-star">★</div><span class="kicker">MATERIAL 3</span>
+              <h3>FloatingActionButton</h3>
+              <p>Prominent floating action; it is placed in Scaffold.floatingActionButton.</p><a
+                href="https://api.flutter.dev/flutter/material/FloatingActionButton-class.html"
+                rel="noopener noreferrer" target="_blank">Explore FAB API ↗</a>
+            </article>
+          </div>
+          <div class="s06-resource-row"><a class="primary-button" href="https://docs.flutter.dev/ui/widgets"
+              rel="noopener noreferrer" target="_blank">Browse the full Widget Catalog ↗</a><a class="ghost-button"
+              href="https://docs.flutter.dev/ui/widgets/material" rel="noopener noreferrer" target="_blank">View
+              Material components ↗</a><a class="ghost-button" href="https://docs.flutter.dev/reference/widgets"
+              rel="noopener noreferrer" target="_blank">Alphabetical widget index ↗</a></div>
+          <div class="s06-discovery-quiz"><span class="kicker">FIND THE CATEGORY, THEN THE WIDGET</span>
+            <h3>Widget detective</h3><label for="discoveryNeed">Choose a UI requirement:</label><select
+              id="discoveryNeed">
+              <option value="vertical">Place several elements vertically</option>
+              <option value="text">Show styled text</option>
+              <option value="card">Group a profile in a visual container</option>
+              <option value="input">Let the user type a name</option>
+              <option value="image">Display an image asset</option>
+            </select>
+            <div class="s06-discovery-answer"><span>Most suitable category?</span>
+              <div class="s06-guess-list" id="discoveryChoices"></div>
+            </div>
+            <p class="s06-inline-result" id="discoveryFeedback" role="status">Choose a category. The next hint will help
+              you find a widget and its API class.</p>
+          </div>
+          <div class="s06-note"><strong>Gallery versus API.</strong> Visual examples help you identify a component; the
+            API describes the exact Dart class. The official Material demo is a useful visual reference, but the old
+            separate Flutter Gallery app is no longer the primary maintained starting point.</div>
+          <p class="s06-small-link">Visual reference: <a
+              href="https://github.com/flutter/samples/tree/main/material_3_demo" rel="noopener noreferrer"
+              target="_blank">Material 3 Demo source and components ↗</a> · <a
+              href="https://docs.flutter.dev/ui/widgets" rel="noopener noreferrer" target="_blank">Full Widget Catalog
+              ↗</a></p>
+        </section>
+        <section class="lesson-step" data-step="6" hidden="" id="section-7">
+          <div class="section-top"><span class="overline">STEP 07 · FROM DOCS TO CODE</span><span
+              class="duration">GUIDED DISCOVERY</span></div>
+          <h1 class="section-heading">Discover a package on pub.dev, then make your star button play a sound</h1>
+          <p class="lede">Your Digital ID already runs. Now research one Flutter package on pub.dev and use it to play a
+            short, bundled sound when the student presses the star FloatingActionButton. The profile image remains
+            visual only.</p>
+          <div class="concept-card s06-talk">
+            <div class="concept-mascot"><img alt="" decoding="async" loading="lazy"
+                src="images/dash-study-mascot.webp" /></div>
+            <div class="concept-speech">
+              <h3>Package research belongs to the same documentation journey.</h3>
+              <p>The Widget Catalog helps you find UI classes. pub.dev helps you find packages when you need an
+                additional capability. Read the package README, supported platforms, installation instructions, and API
+                before importing it.</p>
+            </div>
+          </div>
+          <div class="s06-challenge">
+            <div class="s06-challenge-layout">
+              <div class="s06-id-preview">
+                <div class="s06-id-bar">My Digital ID</div>
+                <div class="s06-id-body"><img alt="Student avatar asset"
+                    src="starter/assets/images/student_avatar.png" /><strong>Your Name</strong><small>PDB2 · Junior
+                    Flutter Developer</small></div>
+                <div class="s06-star-fab">★</div>
+              </div>
+              <div><span class="kicker">REAL APP CHALLENGE · ASSETS + PUB.DEV</span>
+                <h3>Press the star → play a little chime</h3>
+                <ol class="steps-list">
+                  <li>Open <a href="https://pub.dev/" rel="noopener noreferrer" target="_blank">pub.dev</a> and search
+                    <strong>audioplayers</strong>. Check its <em>Readme</em>, latest compatible version, supported
+                    platforms, and example.
+                  </li>
+                  <li>In the project terminal run <code>flutter pub add audioplayers</code>. Confirm a new entry under
+                    <code>dependencies:</code> in your own <code>pubspec.yaml</code>.
+                  </li>
+                  <li>Copy <code>starter/assets/audio/star_chime.wav</code> to your project's <code>assets/audio/</code>
+                    folder, then register it under <code>flutter: assets:</code> alongside the existing image.</li>
+                  <li>Use the existing <code>FloatingActionButton.onPressed</code> callback to call
+                    <code>_playStarSound</code>. Read <a
+                      href="https://pub.dev/documentation/audioplayers/latest/audioplayers/AssetSource-class.html"
+                      rel="noopener noreferrer" target="_blank">AssetSource</a> to play the file from the Flutter
+                    bundle.
+                  </li>
+                  <li>Run in Chrome or Android. Press the <strong>star button</strong> to hear the sound. The avatar is
+                    not clickable; do not add a SnackBar, counter, or state management.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="s06-task-tracker"><span class="kicker">TRACK YOUR PROGRESS</span>
+              <label><input class="s06-milestone" type="checkbox" /> I found audioplayers on pub.dev and checked
+                supported platforms.</label>
+              <label><input class="s06-milestone" type="checkbox" /> I installed the package and found it in
+                pubspec.yaml.</label>
+              <label><input class="s06-milestone" type="checkbox" /> I registered the audio asset next to my image
+                asset.</label>
+              <label><input class="s06-milestone" type="checkbox" /> Pressing the star button plays a sound in my
+                running Flutter app.</label>
+              <p id="milestoneStatus" role="status">Use the checklist to record evidence from your real Flutter project.
+              </p>
+            </div>
+          </div>
+          <div class="s06-pub-guide">
+            <div><span class="kicker">PACKAGE MARKETPLACE · NOT WIDGET CATALOG</span>
+              <h3>How to inspect a package on pub.dev</h3>
+              <p>Search for <strong>audioplayers</strong>. Look at the latest version and SDK compatibility, supported
+                platforms, <strong>Readme</strong>, <strong>Installing</strong>, <strong>Example</strong>, and
+                <strong>API reference</strong>. Decide whether it supports web and Android before using it.
+              </p>
+              <a href="https://pub.dev/packages/audioplayers" rel="noopener noreferrer" target="_blank">Visit
+                audioplayers on pub.dev ↗</a>
+            </div>
+            <div class="s06-inline-code"><strong>Terminal</strong><code>flutter pub add audioplayers</code><strong>Then
+                check the file</strong><code>pubspec.yaml → dependencies: → audioplayers</code><strong>And the
+                source</strong><code>import 'package:audioplayers/audioplayers.dart';</code></div>
+          </div>
+          <div class="check-card">
+            <h3>What does <code>flutter pub add audioplayers</code> do?</h3>
+            <div class="answer-buttons">
+              <button data-correct="false" type="button">Registers the profile PNG under flutter/assets</button>
+              <button data-correct="true" type="button">Adds a dependency and resolves compatible package
+                versions</button>
+              <button data-correct="false" type="button">Turns FloatingActionButton into a sound player
+                automatically</button>
+            </div>
+            <p aria-live="polite" class="quiz-feedback">Choose an answer.</p>
+            <span class="answer-detail" hidden="">pub add adds the dependency to pubspec.yaml and resolves packages.
+              Asset registration and connecting the star button callback are separate tasks.</span>
+          </div>
+          <div class="s06-note"><strong>Asset path distinction:</strong> Flutter registers
+            <code>assets/audio/star_chime.wav</code> in the pubspec. The audioplayers <code>AssetSource</code> uses
+            <code>audio/star_chime.wav</code> with its usual <code>assets/</code> cache prefix. Do not put
+            <code>assets/</code> twice. After changing packages or assets, stop and restart if needed.
+          </div>
+          <details class="s06-reference">
+            <summary>Reveal the star-button sound reference code after your attempt</summary>
+            <section class="practice-card" data-exercise="discovery_profile"><span class="kicker">LOCAL FLUTTER PROJECT
+                · Requires assets and pub.dev package</span>
+              <h3>Phase 2 · Press the star to play the chime</h3>
+              <p>Only use this reference after you have installed audioplayers and registered the local image and WAV
+                file. The avatar is unchanged. The FloatingActionButton now calls _playStarSound through its onPressed
+                callback.</p>
+              <div class="inline-code-box">
+                <div class="code-header"><span>lib/main.dart · Phase 2 · Press star to play audio</span><button
+                    data-copy="discovery_profile" type="button">Copy code</button></div>
+                <pre class="code-sample"><code>import 'package:material_ui/material_ui.dart';
+import 'package:audioplayers/audioplayers.dart';
+
+// One audio player for this tiny teaching app (no UI state needed).
+final AudioPlayer _starPlayer = AudioPlayer();
+
+Future&lt;void&gt; _playStarSound() async {
+  await _starPlayer.stop();
+  await _starPlayer.play(AssetSource('audio/star_chime.wav'));
+}
+
+void main() =&gt; runApp(const DigitalIdApp());
+
+class DigitalIdApp extends StatelessWidget {
+  const DigitalIdApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: const Color(0xFFF0F6FC),
+        appBar: AppBar(title: const Text('My Digital ID')),
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const CircleAvatar(
+                radius: 64,
+                backgroundImage: AssetImage('assets/images/student_avatar.png'),
+              ),
+              const SizedBox(height: 16),
+              const Text('Your Name',
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 6),
+              const Text('PDB2 · Junior Flutter Developer'),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: _playStarSound, // Press the star to play the chime.
+          child: const Icon(Icons.star),
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+              </div>
+              <div class="mini-challenge"><strong>Try this:</strong> Find the new import, the <code>AudioPlayer</code>
+                object, <code>FloatingActionButton.onPressed</code>, and the <code>AssetSource</code> path. Explain each
+                using official docs/pub.dev.</div>
+              <details class="hint s06-solution">
+                <summary>Reveal guidance / expected observation</summary>
+                <p>Pressing the star FloatingActionButton starts the sound. The avatar remains just an image. No
+                  SnackBar and no state mutation were added.</p>
+              </details>
+              <div class="s06-local-only"><strong>Use your Flutter project in VS Code.</strong> DartPad cannot access
+                the images or audio files stored on your computer. The Gist publisher deliberately excludes this
+                asset-based example.</div>
+              <div class="s06-local-only"><strong>Local Flutter app only.</strong> This example requires the image/audio
+                assets and the audioplayers dependency; it is deliberately not published as a DartPad Gist.</div>
+            </section>
+          </details>
+          <div class="s06-reload"><span class="kicker">DEBUGGING REMINDER</span>
+            <h3>What if my changes do not appear?</h3>
+            <p>Saving an edited widget usually enables hot reload in an active debug session, or press <code>r</code> in
+              the running Flutter terminal. Some changes, including edits to <code>main()</code> or initializers,
+              require a hot restart. A complete stop/re-run may be needed for configuration or asset changes.</p>
+            <div class="s06-reload-grid">
+              <div><strong>Hot reload</strong><small>Preserves current state when supported. Great for UI edits.</small>
+              </div>
+              <div><strong>Hot restart</strong><small>Restarts Dart app state when reload cannot apply the
+                  change.</small></div>
+              <div><strong>Full restart</strong><small>For project/configuration or toolchain changes.</small></div>
+            </div>
+          </div>
+          <p class="s06-small-link">Reference: <a href="https://docs.flutter.dev/tools/hot-reload"
+              rel="noopener noreferrer" target="_blank">How hot reload works ↗</a> and <a
+              href="https://docs.flutter.dev/tools/vs-code" rel="noopener noreferrer" target="_blank">Flutter in VS Code
+              ↗</a>.</p>
+        </section>
+        <section class="lesson-step" data-step="7" hidden="" id="section-8">
+          <div class="section-top"><span class="overline">STEP 08 · INDEPENDENT DISCOVERY</span><span
+              class="duration">GUIDED DISCOVERY</span></div>
+          <h1 class="section-heading">Your next three widgets are your own investigation</h1>
+          <p class="lede">You have a running Digital ID, one registered image, and experience finding a plugin on
+            pub.dev. Continue discovering Flutter widgets from official documentation—without adding a complicated UI
+            framework.</p>
+          <div class="concept-card s06-talk">
+            <div class="concept-mascot"><img alt="" decoding="async" loading="lazy"
+                src="images/dash-study-mascot.webp" /></div>
+            <div class="concept-speech">
+              <h3>Document your decisions, not a copied definition.</h3>
+              <p>Investigate three widgets from different catalog categories. For each, find its official class API,
+                inspect the constructor and two parameters, and note one related type. Implement one small change in
+                your existing Digital ID.</p>
+            </div>
+          </div>
+          <div class="assignment-card"><span class="kicker">GOOGLE CLASSROOM · ONE SUBMISSION PER STUDENT</span>
+            <h3>Widget Discovery Portfolio</h3>
+            <p>Submit a single ZIP named StudentName_WidgetDiscovery.zip with your report, modified main.dart, and one
+              screenshot. Your screenshot must show your Digital ID with a local image and star FAB.</p>
+            <ol class="steps-list">
+              <li><strong>WidgetDiscovery_Report.pdf</strong> — three researched widgets, each from a different
+                category, with official links and a short explanation of useful parameters.</li>
+              <li><strong>main.dart</strong> — your modified Digital ID source code. Keep the avatar and star FAB. You
+                may include the star-button audio feature practiced in class.</li>
+              <li><strong>screenshot.png</strong> — show the real app running with your personal name and local image.
+              </li>
+            </ol>
+            <p><strong>Research rule:</strong> Learn from official Flutter documentation and pub.dev rather than pasting
+              complete solutions. Your report must mention one related class link. Do not add unnecessary packages for
+              homework.</p>
+            <div class="s04-download-row"><a class="primary-button" download=""
+                href="assignment/Widget_Discovery_Homework.pdf">↓ Homework instructions PDF</a><a class="ghost-button"
+                download="" href="assignment/Widget_Discovery_Report_Template.md">↓ Editable report template</a><a
+                class="ghost-button" download="" href="starter/README.md">↓ Starter setup notes</a></div>
+          </div>
+          <div class="s06-study-task"><span class="kicker">EXIT REFLECTION · THREE QUESTIONS</span>
+            <h3>Can you locate the answer independently?</h3>
+            <div class="check-card">
+              <h3>A developer knows the widget name Text but needs to know the type of its style property. Where should
+                they start?</h3>
+              <div class="answer-buttons"><button data-correct="true" type="button">The Text API
+                  reference</button><button data-correct="false" type="button">The course syllabus</button><button
+                  data-correct="false" type="button">The platform android/ folder</button></div>
+              <p aria-live="polite" class="quiz-feedback">Choose an answer.</p><span class="answer-detail" hidden="">The
+                API reference lists constructor signatures and property types, which link to related classes such as
+                TextStyle.</span>
+            </div>
+            <div class="check-card">
+              <h3>Which file is the correct starting point when adding a new dependency to a Flutter project?</h3>
+              <div class="answer-buttons"><button data-correct="false" type="button">README.md</button><button
+                  data-correct="true" type="button">pubspec.yaml</button><button data-correct="false"
+                  type="button">main.dart comments</button></div>
+              <p aria-live="polite" class="quiz-feedback">Choose an answer.</p><span class="answer-detail"
+                hidden="">Declare dependencies in pubspec.yaml and run flutter pub get; the resolved versions are
+                recorded
+                in pubspec.lock.</span>
+            </div>
+            <div class="check-card">
+              <h3>A student wants a visually suitable Material component but does not know its class name. What is the
+                best first move?</h3>
+              <div class="answer-buttons"><button data-correct="false" type="button">Memorize every public
+                  class</button><button data-correct="true" type="button">Browse the Widget Catalog and Material
+                  component gallery</button><button data-correct="false" type="button">Search through compiled platform
+                  files</button></div>
+              <p aria-live="polite" class="quiz-feedback">Choose an answer.</p><span class="answer-detail" hidden="">The
+                Widget Catalog/gallery helps narrow the component category, then the API reference explains constructors
+                and properties.</span>
+            </div>
+          </div>
+          <div class="completion-message" hidden="" id="completionMessage">
+            <div class="confetti">✦ ✳︎ ✦ ✳︎ ✦</div>
+            <h3>Codelab 06 complete!</h3>
+            <p>You ran a Digital ID, registered an image, understood your widget tree, discovered a package on pub.dev,
+              and can investigate new widgets independently.</p>
+          </div>
+          <div class="s04-next"><span class="kicker">NEXT · WIDGET FUNDAMENTALS</span>
+            <h3>Arrive with a running Flutter project and three discoveries.</h3>
+            <p>The upcoming sessions will systematically explore widgets and layout. You are no longer starting from an
+              empty screen — you have a project and a repeatable documentation method.</p>
+          </div>
+        </section>
+        <footer aria-label="Lesson navigation" class="footer-controls">
+          <div class="footer-left"><span id="footerStep">Section 1 of 8</span><span class="footer-subtitle">Self-paced ·
+              resume anytime</span></div>
+          <div class="footer-actions"><button class="footer-btn ghost" id="previousButton" type="button">←
+              Previous</button><button class="footer-btn secondary" id="markButton" type="button">✓ Mark
+              completed</button><button class="footer-btn primary" id="nextButton" type="button">Next →</button></div>
+        </footer>
+      </main>
+      <footer class="small-note" style="padding:20px 40px;text-align:center;border-top:1px solid var(--line)">SICT235 ·
+        PDB2 · 2026–2027 · Guided blended learning</footer>
+    </div>
+  </div>
+</body>
+
+</html>

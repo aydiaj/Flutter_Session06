@@ -1,0 +1,14 @@
+# Merge into the existing generated pubspec.yaml (do not replace the whole file).
+# First run this command in your project root: flutter pub add material_ui
+# It adds material_ui under dependencies: (use the compatible selected version).
+# Register the local image BEFORE the first Digital ID run.
+# Add the sound asset when reaching the pub.dev challenge.
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/student_avatar.png
+    # - assets/audio/star_chime.wav  # Uncomment only after copying the WAV in Step 07.
+
+# Do NOT type a fixed audioplayers version from this example.
+# In the Flutter project root run: flutter pub add audioplayers
+# It adds a compatible version under dependencies and resolves it.

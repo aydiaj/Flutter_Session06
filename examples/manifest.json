@@ -1,0 +1,24 @@
+[
+  {
+    "key": "hello_app",
+    "path": "examples/hello_app/main.dart",
+    "publish_gist": false,
+    "reason": "Requires local Flutter image asset"
+  },
+  {
+    "key": "widget_tree",
+    "path": "examples/widget_tree/main.dart",
+    "publish_gist": true
+  },
+  {
+    "key": "text_api",
+    "path": "examples/text_api/main.dart",
+    "publish_gist": true
+  },
+  {
+    "key": "discovery_profile",
+    "path": "examples/discovery_profile/main.dart",
+    "publish_gist": false,
+    "reason": "Requires local image/audio assets and audioplayers dependency"
+  }
+]
